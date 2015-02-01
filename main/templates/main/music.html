@@ -1,0 +1,18 @@
+{% extends "main/index.html" %}
+
+{% block title %}Music{% endblock %}
+{% block header %}<h1>Music Streams</h1><hr>{% endblock %}
+
+{% block content %}
+{% if music_samples %}
+    {% for sample in music_samples %}
+        <div id="music_sample">
+            <h3>{{ sample.title|title }}</h3>
+            <div>{{ sample.text|truncatechars:1000|linebreaks }}</div>
+            <div>{{ sample.embed_html|safe }}</div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No Music Streams</p>
+{% endif %}
+{% endblock %}

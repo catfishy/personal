@@ -1,0 +1,2 @@
+Django==1.7.4
+# need apache and mod_wsgi for prod

@@ -1,0 +1,38 @@
+
+
+{% extends "main/base.html" %}
+
+{% block title %}{{ blogpost.post_title|title }}{% endblock %}
+{% block header %}
+<div id="blog_post_header">
+<i id="pub_date">{{ blogpost.pub_date }}</i>
+<div id="blog_title">{{ blogpost.post_title|title }}</div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div>{{ blogpost.text}}</div><br><br>
+
+<div id="comment_form">
+<h3>Add Comment</h3>
+<form action="{% url 'blog:addcomment' blogpost.id %}" method="post">
+    {% csrf_token %}
+    <div><label for="comment_user">Name</label><input type="text" name="comment_user" id="comment_user"/><br /></div>
+    <div><label for="comment_title">Comment Title</label><input type="text" name="comment_title" id="comment_title"/><br /></div>
+    <div><label for="comment_text">Comment Text</label><textarea name="comment_text" id="comment_text"></textarea></div>
+<input type="submit" value="Submit" />
+</form>
+</div>
+<div id="comments">
+<h3>Previous Comments</h3>
+{% for comment in blogpost.blogcomment_set.all %}
+    <div>
+        <h4>{{ comment.comment_title|title}}</h4>
+        <p>{{ comment.text }}</p>
+        <i>{{ comment.comment_user }} - {{ comment.pub_date }}</i>
+    </div>
+    <hr>
+{% endfor %}
+</div>
+<br>
+{% endblock %}

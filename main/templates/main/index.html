@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/type.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/bergamo.css' %}" />
+    <script src="{% static 'main/js/jquery.embedly.min.js' %}"></script>
+
+    <title>{% block title %}Catfishy{% endblock %}</title>
+</head>
+
+<body>
+<br>
+<div>
+    <img src="{% static 'main/images/catfish.png' %}" alt="Catfish" height="200" width="333">
+</div>
+    <br>
+    <div>
+        <a class="oraclelink" href="{% url 'main:writing' %}">Writing</a>
+        <a class="oraclelink" href="{% url 'main:music' %}">Music</a>
+        <a class="oraclelink" href="{% url 'blog:index' %}">Blog</a>
+        <a class="oraclelink" href="{% url 'main:contact' %}">Contact Info</a>
+    </div>
+    <div>{% block header %}{% endblock %}</div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

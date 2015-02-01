@@ -1,0 +1,21 @@
+{% extends "main/index.html" %}
+
+{% block title %}Writing{% endblock %}
+{% block header %}<h1>Writing</h1><hr>{% endblock %}
+
+{% block content %}
+{% if writing_samples %}
+    {% for sample in writing_samples %}
+        <div id="writing_sample">
+            <h3>{{ sample.title|title}}</h3>
+            {% if sample.writing_type == 'poetry' %}
+            <div id="writing_centered">{{ sample.text|truncatechars:1000|linebreaks }}</div>
+            {% else %}
+            <div id="writing_regular">{{ sample.text|truncatechars:1000|linebreaks }}</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No writing samples</p>
+{% endif %}
+{% endblock %}

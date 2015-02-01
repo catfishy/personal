@@ -1,0 +1,18 @@
+{% extends "main/index.html" %}
+
+{% block title %}Blog{% endblock %}
+{% block header %}<h1>Blog</h1><hr>{% endblock %}
+
+{% block content %}
+{% if latest_blog_list %}
+    {% for blog in latest_blog_list %}
+        <div id="blog_post_snippet">
+            <i id="pub_date">{{ blog.pub_date }}</i>
+            <a href="{% url 'blog:blogpost' blog.id %}"><h3 id="blog_title">{{ blog.post_title|title }}</h3></a>
+            <div id="blog_text"><p>{{ blog.text }}</div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No blog posts are available.</p>
+{% endif %}
+{% endblock %}
